@@ -17,7 +17,7 @@ db.create_all()
 
 @app.route('/todos/create', methods=['POST'])
 def create_todo():
-    description = request.form.get('description', '')
+    description = request.get_json()['description']
 
     #USING description ABOVE TO CREATE A NEW TODO OBJECT
     todo = Todo(description=description)
