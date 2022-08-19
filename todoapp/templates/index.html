@@ -45,7 +45,7 @@
                 liItem.innerHTML = jsonResponse['description'];
                 document.getElementById('todos').appendChild(liItem);
                 document.getElementById('error').className = 'hidden';
-            })
+            }) 
             .catch(function() {
                 document.getElementById('error').className = '';
             })
