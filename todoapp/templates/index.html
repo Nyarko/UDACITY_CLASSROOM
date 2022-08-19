@@ -67,11 +67,12 @@
                 const liItem = document.createElement('LI');
                 liItem.innerHTML = jsonResponse['description'];
                 document.getElementById('todos').appendChild(liItem);
+                document.getElementById('error').className = 'hidden';
             })
             /*l
             The code below runs only when something goes wrong with the code up*/
             .catch(function() {
-
+                document.getElementById('error').className = '';
             })
         }
     </script>
