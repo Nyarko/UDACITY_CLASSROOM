@@ -30,7 +30,10 @@ def create_todo():
 
     ##SINCE WE'RE USING JSON NOW, JSONIFY FROM FLAS WILL BE USED
     ##JSONIFY FROM FLASK WILL TAKE CARE OF LOADING PAGES ON CHANGES MADE
-    return jsonify()
+    ##THAT IS BY RETURNING JSON DATA TO THE CLIENT USING WHATEVER WAS PASSED 
+    return jsonify({
+        'description': todo.description
+    })
 
 
 @app.route('/')
