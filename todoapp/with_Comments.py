@@ -18,9 +18,19 @@ db.create_all()
 @app.route('/todos/create', methods=['POST'])
 def create_todo():
     description = request.get_json()['description']
+
+    #USING description ABOVE TO CREATE A NEW TODO OBJECT
     todo = Todo(description=description)
+
+    ##THIS STARTS CREATING OBJECT, AS A PENDING CHANGE
     db.session.add(todo)
+
+    ##THIS ONE FINALY MAKES THE CHANGE REFLECT ON THE DB
     db.session.commit()
+
+    ##SINCE WE'RE USING JSON NOW, JSONIFY FROM FLAS WILL BE USED
+    ##JSONIFY FROM FLASK WILL TAKE CARE OF LOADING PAGES ON CHANGES MADE
+    ##THAT IS BY RETURNING JSON DATA TO THE CLIENT USING WHATEVER WAS PASSED 
     return jsonify({
         'description': todo.description
     })
@@ -30,6 +40,6 @@ def create_todo():
 def index():
     return render_template('index.html', data=Todo.query.all())
 
-
+##Just in case you wanna use python to run
 if __name__ == '__main__':
    app.run(host="0.0.0.0", port=3000)
