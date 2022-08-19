@@ -58,6 +58,8 @@
                 Since we're using a json file,
                 we have to append the newly created object to the list
                 */
+                const liItem = document.createElement('LI');
+                liItem.innerHTML = jsonResponse['description'];
                 document.getElementById('todos').appendChild(liItem)
             })
         }
