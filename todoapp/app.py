@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for,jsonify
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -28,9 +28,9 @@ def create_todo():
     ##THIS ONE FINALY MAKES THE CHANGE REFLECT ON THE DB
     db.session.commit()
 
-    ##TELLING VIEW TO REDIRECT TO INDEX PAGE AND REFRESH IT
-    ##HENCE REDIRECT AND URL_FOR IMPORTS WERE MADE
-    return redirect(url_for('index'))
+    ##SINCE WE'RE USING JSON NOW, JSONIFY FROM FLAS WILL BE USED
+    ##JSONIFY FROM FLASK WILL TAKE CARE OF LOADING PAGES ON CHANGES MADE
+    return jsonify()
 
 
 @app.route('/')
