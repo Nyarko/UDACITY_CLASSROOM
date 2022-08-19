@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo App</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <!--
@@ -14,6 +19,7 @@
         <input type="text" name="description"/>
         <input type="submit" value="Create"/>
     </form>
+    <div id="error" class="hidden">Something went wrong!</div>
     <ul>
         <!--
             NORMALLY:
@@ -60,7 +66,12 @@
                 */
                 const liItem = document.createElement('LI');
                 liItem.innerHTML = jsonResponse['description'];
-                document.getElementById('todos').appendChild(liItem)
+                document.getElementById('todos').appendChild(liItem);
+            })
+            /*l
+            The code below runs only when something goes wrong with the code up*/
+            .catch(function() {
+
             })
         }
     </script>
