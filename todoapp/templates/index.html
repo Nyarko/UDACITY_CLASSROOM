@@ -54,6 +54,11 @@
             })
             .then(function(jsonResponse) {
                 console.log(jsonResponse);
+                /*
+                Since we're using a json file,
+                we have to append the newly created object to the list
+                */
+                document.getElementById('todos').appendChild(liItem)
             })
         }
     </script>
