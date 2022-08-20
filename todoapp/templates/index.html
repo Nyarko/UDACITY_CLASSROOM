@@ -14,6 +14,16 @@
             padding: 0;
             margin: 0;
         }
+        li {
+            clear: both;
+        }
+        li button {
+            -webkit-appearance: none;
+            border: none;
+            outline: none;
+            color: red;
+            float: right;
+        }
     </style>
 </head>
 <body>
@@ -25,7 +35,11 @@
     <ul id="todos">
 
         {% for d in data %}
-        <li><input class="check-completed" data-id="{{ d.id }}" type="checkbox" {% if d.completed %} checked {% endif %} /> {{ d.description }}</li>
+        <li>
+            <input class="check-completed" data-id="{{ d.id }}" type="checkbox" {% if d.completed %} checked {% endif %} />
+             {{ d.description }}
+             <button>&cross;</button>
+        </li>
         {% endfor %}
     
     </ul>
@@ -37,14 +51,20 @@
                 console.log('event', e);
                 const newCompleted = e.target.checked;
                 const todoId = e.target.dataset['id'];
-                fetch('/todos/' + todoId + 'set-completed', {
+                fetch('/todos/' + todoId + '/set-completed', {
                     method: 'POST',
                     body: JSON.stringify({
-                        'completed':newCompleted
+                        'completed': newCompleted
                     }),
                     headers: {
-                        'Content-Type': 'app'
+                        'Content-Type': 'application/json'
                     }
+                })
+                .then(function() {
+                    document.getElementById('error').className = 'hidden';
+                })
+                .catch(function() {
+                    document.getElementById('error').className = '';
                 })
             }
         }
