@@ -2,11 +2,14 @@ from email.policy import default
 from os import abort
 from flask import Flask, render_template, request, redirect, url_for,jsonify
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 import sys
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:66Oh!6My!6@localhost:5432/todoapp'
 db = SQLAlchemy(app)
+
+migrate = Migrate(app)
 
 class Todo(db.Model):
     __tablename__ = 'todos'
