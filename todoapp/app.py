@@ -17,15 +17,20 @@ class Todo(db.Model):
     description = db.Column(db.String(), nullable=False)
     completed = db.Column(db.Boolean, default=False)
     list_id = db.Column(db.Integer, db.ForeignKey('todolists.id'), nullable=False)
+    
 
     def __repr__(self):
-        return f'<Todo {self.id} {self.description}>'
+        return f'<Todo {self.id} {self.description}, list {self.list_id}>'
 
 class TodoList(db.Model):
     __tablename__ = 'todolists'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(), nullable=False)
     todos = db.relationship('Todo', backref='list', lazy=True)
+
+def __repr__(self):
+    return f'<TodoList {self.id} {self.name}>'
+
 
 
 @app.route('/todos/create', methods=['POST'])
@@ -34,7 +39,7 @@ def create_todo():
     body = {}
     try:
         description = request.get_json()['description']
-        todo = Todo(description=description)
+        todo = Todo(description=description, completed=False)
         db.session.add(todo)
         db.session.commit()
         body['description'] = todo.description
@@ -70,7 +75,7 @@ def delete_todo(todo_id):
         db.session.rollback()
     finally:
         db.session.close()
-    return jsonify({'success': True})
+    return jsonify({ 'success': True })
 
 
 @app.route('/')
