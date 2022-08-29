@@ -128,11 +128,22 @@
             .then(function(jsonResponse) {
                 console.log(jsonResponse);
                 const liItem = document.createElement('li');
-                liItem.innerHTML = jsonResponse['description'];
+                const checkbox = document.createElement('input');
+                checkbox.className = 'check-completed';
+                checkbox.type = 'checkbox';
+                checkbox.setAttribute('data-id', jsonResponse.id);
+                liItem.appendChild(checkbox);
+
+                const text = document.createTextNode('' + jsonResponse.description);
+                liItem.appendChild(text);
+
+                const 
+
                 document.getElementById('todos').appendChild(liItem);
                 document.getElementById('error').className = 'hidden';
             }) 
             .catch(function() {
+                console.error('Error occurred');
                 document.getElementById('error').className = '';
             })
         }
