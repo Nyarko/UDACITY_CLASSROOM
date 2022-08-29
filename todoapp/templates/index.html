@@ -45,25 +45,27 @@
             {% endfor %}
         </ul>
     </div>
+
     <div class="todos-wrapper">
         <h4>{{ active_list.name }}</h4>
-    </div>
-    <form id="form" >
-        <input type="text" id = "description" name="description" placeholder="Write your todo here..."/>
-        <input type="submit" value="Create"/>
-    </form>
-    <div id="error" class="hidden">Something went wrong!</div>
-    <ul id="todos">
-
-        {% for d in data %}
-        <li>
-            <input class="check-completed" data-id="{{ d.id }}" type="checkbox" {% if d.completed %} checked {% endif %} />
-             {{ d.description }}
-             <button class="Remover" data-id="{{ d.id }}">&cross;</button>
-        </li>
-        {% endfor %}
+        <form id="form" >
+            <input type="text" id = "description" name="description" placeholder="Write your todo here..."/>
+            <input type="submit" value="Create"/>
+        </form>
+        <div id="error" class="hidden">Something went wrong!</div>
+        <ul id="todos">
     
-    </ul>
+            {% for d in data %}
+            <li>
+                <input class="check-completed" data-id="{{ d.id }}" type="checkbox" {% if d.completed %} checked {% endif %} />
+                 {{ d.description }}
+                 <button class="Remover" data-id="{{ d.id }}">&cross;</button>
+            </li>
+            {% endfor %}
+        
+        </ul>
+    </div>
+    
     <script>
         const checkboxes = document.querySelectorAll('.check-completed');
         for (let i = 0; i < checkboxes.length; i++) {
