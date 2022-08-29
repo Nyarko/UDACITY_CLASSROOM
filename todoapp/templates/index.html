@@ -137,7 +137,11 @@
                 const text = document.createTextNode('' + jsonResponse.description);
                 liItem.appendChild(text);
 
-                const 
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'Remover';
+                deleteBtn.setAttribute('data-id', jsonResponse.id);
+                deleteBtn.innerHTML = '&cross;';
+                liItem.appendChild(deleteBtn);
 
                 document.getElementById('todos').appendChild(liItem);
                 document.getElementById('error').className = 'hidden';
