@@ -34,6 +34,17 @@
     </style>
 </head>
 <body>
+    <div class="lists-wrapper">
+        <ul id="lists">
+            {% for list in lists %}
+            <li>
+                <a href="/lists/{{ list.id }}">
+                    {{ list.name }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
     <form id="form" >
         <input type="text" id = "description" name="description" placeholder="Write your todo here..."/>
         <input type="submit" value="Create"/>
